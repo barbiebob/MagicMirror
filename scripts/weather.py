@@ -4,6 +4,7 @@
 
 import commands
 import datetime
+from datetime import timedelta
 
 # Get temperature in Celsius
 request = "curl -s 'http://api.openweathermap.org/data/2.5/weather?q=Vikingstad,SE&appid=570785fa1a36740b5641d949cac44d59&units=metric' | jq . | grep -w temp | sed 's/[^[:digit:].-]//g'"
@@ -22,7 +23,6 @@ request = "curl -s 'http://api.openweathermap.org/data/2.5/weather?q=Vikingstad,
 sunset = commands.getoutput(request)
 sunset = float(sunset)
 sunset = datetime.datetime.fromtimestamp(sunset).strftime('%H:%M')
-print sunset
 
 # Print the output
 print("Content-type: text/html\n\n" "&ensp;&ensp;&ensp;" "Temperatur: &nbsp;&ensp;" + temp + " ºC")
